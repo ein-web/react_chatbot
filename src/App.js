@@ -50,6 +50,7 @@ function App() {
             }
                 style={{ margin: "10px 0 0 20px" }} > 중가</button>
         </div>
+        // 주석추가
     );
 }
 
