@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>소스 리스트</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f1f5e2;
+    margin: 0;
+    padding: 0;
+  }
+  .container {
+    width: 80%;
+    margin: 0 auto;
+       padding: 0;
+  }
+  h1 {
+    font-size: 28px;
+    font-weight: bold;
+    color: #0a4ddd; /* 코발트블루 */
+    text-align: center;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #ffffff; /* 화이트 */
+  }
+  th, td {
+    padding: 4px 8px;
+    text-align: center;
+    height: 36px;
+    border: 1px solid #666666;
+    font-size: 14px;
+    color: #000000; /* 검정 */
+  }
+  th {
+    background-color: #f2f2f2; /* 아주 연한 그레이 */
+  }
+  tr:nth-child(even) {
+    background-color: #f2f2f2; /* 아주 연한 그레이 */
+  }
+  tr:nth-child(odd) {
+    background-color: #ffffff; /* 화이트 */
+  }
+  .tx_brown {color: #8b0303;}
+  .tx_l {text-align:left;}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h1>[참고 소스 리스트]</h1>
+  <table>
+    <thead>
+      <tr>
+        <th style="width: 25%;">폴더명</th>
+        <th style="width: 50%;">파일명</th>
+        <th style="width: 25%;">비고</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="tx_brown"><p>src/ (프로젝트 폴더)</p></td>
+        <td class="tx_l">
+          <p><a href="./src/App.js" target="_blank">App.js (메인,인덱스 같은)</a></p>
+          <p><a href="./src/App.css" target="_blank">App.css (샘플 css)</a></p>
+        </td>
+        <td></td>
+      </tr>
+      <tr>
+        <td class="tx_brown"><p>public (적용이미지 / html 저장소) </p>
+        <p>src/assets/images (이미지 저장소) </p>
+      <p>src/assets/style (css, font 저장소) </p>
+      </td>
+        <td class="tx_l"><p></p>
+        </td>
+        <td></td>
+      </tr>
+      <tr>
+        <td class="tx_brown"><p>src/component (컴포넌트 저장소)</p></td>
+        <td class="tx_l">
+          <p><a href="./src/component/List.js" target="_blank">List.js (컴포넌트 여러개)</a></p>
+          <p><a href="./src/component/Nav.js" target="_blank">Nav.js (네비게이션)</a></p>
+        </td>
+        <td></td>
+      </tr>
+      <tr>
+        <td class="tx_brown"><p>src/pages (각 서브페이지) </p></td>
+        <td class="tx_l">
+          <p><a href="./src/pages/About.js" target="_blank">About.js (이미지 적용 방법) </a></p>
+          <p><a href="./src/pages/Board.js" target="_blank">Board.js </a></p>
+          <p><a href="./src/pages/Main.js" target="_blank">Main.js (List 컴포넌트 적용)</a></p>
+          <p><a href="./src/pages/View.js" target="_blank">Board.js </a></p>
+        </td>
+        <td></td>
+      </tr>
+
+    </tbody>
+  </table>
+</div>
+
+</body>
+</html>
