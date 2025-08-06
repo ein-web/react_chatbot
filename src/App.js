@@ -10,13 +10,13 @@ import Onebon from './pages/Onebon';
 
 function App() {
     let post = "reAct Blog" // 자료 잠깐 저장할때 변수
-    let count = 0
-    const [count2, setCount2] = useState(0)
+    const [count, setCount] = useState(0);      // <--- state로 변경
+    const [count2, setCount2] = useState(0);
+
     const plus = () => {
-        count = count + 1
-        console.log("카운트 되니?", count)
-        setCount2(count2 + 1)
-    }
+        setCount(count + 1);                   // <--- state 변경
+        setCount2(count2 + 1);
+    };
     return (
         <div>
             < Router >
@@ -40,17 +40,16 @@ function App() {
                     <Route path="/Onebon" element={<Onebon />} />
                 </Routes>
             </Router>
-            {/* useState */
-            } < div style={{ padding: "40px 0 0 40px", fontWeight: "bold", color: "#D50000", fontSize: "18px" }} > {
-                count
-            }</div> < div style={{ padding: "40px 0 0 20px", fontWeight: "bold", color: "#304FFE", fontSize: "18px" }} > state : {
-                count2
-            }</div> < button onClick={
-                plus
-            }
-                style={{ margin: "10px 0 0 20px" }} > 중가</button>
+            < div style={{ padding: "40px 0 0 40px", fontWeight: "bold", color: "#D50000", fontSize: "18px" }} >
+                {count}
+            </div>
+            < div style={{ padding: "40px 0 0 20px", fontWeight: "bold", color: "#304FFE", fontSize: "18px" }} >
+                상태 :{count2}
+            </div>
+            < button onClick={plus} style={{ margin: "10px 0 0 20px" }} > 중가
+            </button>
         </div>
-        // 주석추가
+
     );
 }
 
