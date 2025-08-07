@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import React, { useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import './App.css';
 import Nav from './components/Nav';
 import Main from './pages/Main';
@@ -16,7 +16,16 @@ function App() {
     const plus = () => {
         setCount(count + 1);                   // <--- state 변경
         setCount2(count2 + 1);
-    };
+        console.log(count);
+    }
+    // 렌더링 될때마다 실행
+    useEffect(() => {
+        console.log('렌더링');
+    }
+    )
+
+    const inputRef = useRef(); // 인풋에 포커싱
+
     return (
         <div>
             < Router >
@@ -44,10 +53,15 @@ function App() {
                 {count}
             </div>
             < div style={{ padding: "40px 0 0 20px", fontWeight: "bold", color: "#304FFE", fontSize: "18px" }} >
-                상태 :{count2}
+                상태 : {count2}
             </div>
-            < button onClick={plus} style={{ margin: "10px 0 0 20px" }} > 중가
+            < button onClick={plus} style={{ margin: "10px 0 0 20px" }} > 증가
             </button>
+            <div style={{ padding: "40px 0 0 20px" }}>
+                <input ref={inputRef} style={{ margin: "0 8px 0 0" }} />
+                <button onClick={() => inputRef.current.focus()}>검색하기</button>
+            </div>
+
         </div>
 
     );
