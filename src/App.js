@@ -1,5 +1,7 @@
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import React, { useRef, useState, useEffect } from 'react';
+
+import { BrowserRouter, Routes, Route, Navigate, Link } from 'react-router-dom';
+import { DarkModeProvider, useDarkMode } from './pages/DarkModeContext';
+
 import './App.css';
 import Nav from './components/Nav';
 import Main from './pages/Main';
@@ -8,64 +10,60 @@ import Image from './pages/Image';
 import Form from './pages/Form';
 import Onebon from './pages/Onebon';
 
-function App() {
-    let post = "reAct Blog" // 자료 잠깐 저장할때 변수
-    const [count, setCount] = useState(0);      // <--- state로 변경
-    const [count2, setCount2] = useState(0);
+// Header 컴포넌트 내에서 옵셔널 체이닝으로 안전하게 접근
+function Header({ user, setUser }) {
+    const { darkMode, toggleDarkMode } = useDarkMode();
 
-    const plus = () => {
-        setCount(count + 1);                   // <--- state 변경
-        setCount2(count2 + 1);
-        console.log(count);
-    }
-    // 렌더링 될때마다 실행
-    useEffect(() => {
-        console.log('렌더링');
-    }
-    )
-
-    const inputRef = useRef(); // 인풋에 포커싱
 
     return (
-        <div>
-            < Router >
-                <div className="App">
-                    <div className='App-header'>
-                        <h4>
-                            <Link
-                                to="/Main"
-                                style={{
-                                    color: "#ffffff"
-                                }}>{post}</Link>
-                        </h4>
-                    </div>
-                    <Nav /> {/* 네비게이션 바는 여기! */}
-                </div>
-                <Routes>
-                    <Route path="/Main" element={<Main />} />
-                    <Route path="/Board" element={<Board />} />
-                    <Route path="/Image" element={<Image />} />
-                    <Route path="/Form" element={<Form />} />
-                    <Route path="/Onebon" element={<Onebon />} />
-                </Routes>
-            </Router>
-            < div style={{ padding: "40px 0 0 40px", fontWeight: "bold", color: "#D50000", fontSize: "18px" }} >
-                {count}
-            </div>
-            < div style={{ padding: "40px 0 0 20px", fontWeight: "bold", color: "#304FFE", fontSize: "18px" }} >
-                상태 : {count2}
-            </div>
-            < button onClick={plus} style={{ margin: "10px 0 0 20px" }} > 증가
+            <div className={`App-header ${darkMode ? 'dark' : ''}`}>
+                <h4>
+                    <Link to="/Main" style={{ textDecoration: 'none', color: 'inherit' }} title="홈으로이동">
+                        {user?.id ? `${user.id}님 블로그` : '비회원님 블로그'}
+                    </Link>
+                </h4>
+                <button onClick={toggleDarkMode}>
+                {darkMode ? 'Light 모드로 전환' : 'Dark 모드로 전환'}
             </button>
-            <div style={{ padding: "40px 0 0 20px" }}>
-                <input ref={inputRef} style={{ margin: "0 8px 0 0" }} />
-                <button onClick={() => inputRef.current.focus()}>검색하기</button>
             </div>
-
-        </div>
-
     );
 }
 
+function BoardWrapper() {
+    const { darkMode } = useDarkMode();
+    return <div className={`Board ${darkMode ? 'dark' : ''}`}><Board /></div>;
+}
 
-export default App;
+
+function App({ user }) {
+
+    const { darkMode } = useDarkMode();
+
+    return (
+        <BrowserRouter>
+            <div className="App">
+                <Header user={user} />
+                <div className={darkMode ? 'dark' : ''}></div>
+                <Nav darkMode={darkMode} />
+            </div>
+            <Routes>
+                {/* 첫 진입(예: '/')은 /Main으로 자동 이동 */}
+                <Route path="/" element={<Navigate to="/Board" replace />} />
+                <Route path="/Main" element={<Main />} />
+                <Route path="/Board" element={<BoardWrapper />} />
+                <Route path="/Image" element={<Image />} />
+                <Route path="/Form" element={<Form />} />
+                <Route path="/Onebon" element={<Onebon />} />
+            </Routes>
+        </BrowserRouter>
+    );
+}
+
+// 최상위 렌더링 예시: DarkModeProvider를 감싸기
+export default function Root({ user }) {
+    return (
+        <DarkModeProvider>
+            <App user={user} />
+        </DarkModeProvider>
+    );
+}

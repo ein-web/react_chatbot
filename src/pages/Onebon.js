@@ -6,7 +6,7 @@ function Onebon() {
 	const [likes, setLikes] = useState(0);
 
 	return (
-		<div>
+		<div className="basic_box">
 			<ListItem
 				imageSrc={process.env.PUBLIC_URL + '/images/img_01.jpg'}
 				title="제주4·3기록물 유네스코 세계기록유산 등재 기념행사 개최"

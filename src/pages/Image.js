@@ -6,7 +6,7 @@ import { ReactComponent as Ico } from  '../assets/images/ico_main.svg'
 // src/pages/Image.js
 function Image() {
   return (
-  <div style={{ background:'#9CCC65', textAlign:'center', paddingBottom:'40px'}}>
+  <div style={{ textAlign:'center', paddingBottom:'40px'}}>
     <ul>
       <li style={{padding:'20px 0'}}><h4>이미지 소개(퍼블릭) 입니다</h4></li>
       <li title='이미지삽입'><img src={process.env.PUBLIC_URL + '/images/img_01.jpg'} alt="이미지삽입" width={'200px'} height={'380px'}/></li>

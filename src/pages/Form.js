@@ -64,9 +64,7 @@ function Form() {
         <form onSubmit={handleSubmit}>
             <div
                 className="basic_box"
-                style={{
-                    background: '#dddddd'
-                }}>
+                >
                 <h1>폼태그 상세 입니다</h1>
                 <div className='tb_wrap'>
                     <table>
