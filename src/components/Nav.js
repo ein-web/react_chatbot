@@ -1,6 +1,6 @@
 // src/components/Nav.js
 import React from 'react';
-import { useDarkMode } from '../pages/DarkModeContext';
+import { useDarkMode } from './DarkModeContext';
 
 export default function Nav() {
     const { darkMode } = useDarkMode();

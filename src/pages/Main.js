@@ -1,8 +1,8 @@
 // src/pages/Main.js
 
 import React, { useRef, useState, useEffect} from 'react';
-import UserContext from './UserContext';
-import UserProfile from './UserProfile';
+import UserContext from '../components/UserContext';
+import UserProfile from '../components/UserProfile';
 
 
 function Main() {
